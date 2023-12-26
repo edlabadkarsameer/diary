@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diary Application</title>
+  <link rel="icon"   type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    header {
+      background-color: #f0f0f0;
+      color: #000;
+      padding: 10px;
+      text-align: left;
+      position: relative;
+      z-index: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: left;
+      justify-content: left;
+      font-size: 22px;
+    }
+
+    header img {
+      width: 50px; /* Adjust the width of the image */
+      margin-right: 10px; /* Adjust the margin if needed */
+    }
+
+    .navbar {
+      display: none;
+      flex-direction: column;
+      background-color: lightgreen;
+      padding: 10px;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 100%;
+      z-index: 0;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 20px;
+      margin: 6px 0;
+      border-bottom: 1px solid #555;
+      transition: background-color 0.3s;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .navbar a:hover {
+      background-color: #555;
+    }
+
+    .diary-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    select, textarea, button {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 18px;
+    }
+
+    textarea {
+      height: 400px; /* Increased the height */
+    }
+
+    #currentDate {
+      width: 100%; /* Adjusted the width */
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 18px;
+      background-color: #fff;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .navbar {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header onclick="toggleNavbar()">
+  ☰ 
+  <div class="navbar">
+    <a href="#page1">Read</a>
+    <a href="#page2">Write</a>
+    <!-- Add more pages as needed -->
+  </div>
+</header>
+
+<div class="diary-container">
+  <div>
+    <label for="pageSelector">Select Page:</label>
+    <select id="pageSelector">
+      <option value="page1">Sameer</option>
+      <option value="page2">Aarya</option>
+      <!-- Add more options as needed -->
+    </select>
+
+    <label for="diaryEntry">Write your diary entry:</label>
+    <textarea id="diaryEntry" rows="10"></textarea>
+
+    <label for="currentDate">Current Date:</label>
+    <input type="text" id="currentDate" readonly>
+
+    <button onclick="submitDiary()">Submit</button>
+  </div>
+</div>
+
+<script>
+  function toggleNavbar() {
+    const navbar = document.querySelector('.navbar');
+    navbar.style.display = (navbar.style.display === 'flex') ? 'none' : 'flex';
+  }
+
+  function submitDiary() {
+    const selectedPage = document.getElementById('pageSelector').value;
+    const diaryEntry = document.getElementById('diaryEntry').value;
+    const currentDate = new Date().toLocaleDateString();
+
+    // Perform any action you want with the diary entry data
+    console.log('Selected Page:', selectedPage);
+    console.log('Diary Entry:', diaryEntry);
+    console.log('Current Date:', currentDate);
+  }
+
+  document.getElementById('currentDate').value = new Date().toLocaleDateString();
+</script>
+
+</body>
+</html>
